@@ -48,12 +48,12 @@ highly recommended.
 %install
 mkdir -p %{buildroot}%{_texmf_language_dat_d}
 cat > %{buildroot}%{_texmf_language_dat_d}/hyphen-esperanto <<EOF
-%% from hyphen-esperanto:
+\%\% from hyphen-esperanto:
 esperanto loadhyph-eo.tex
 EOF
 mkdir -p %{buildroot}%{_texmf_language_def_d}
 cat > %{buildroot}%{_texmf_language_def_d}/hyphen-esperanto <<EOF
-%% from hyphen-esperanto:
+\%\% from hyphen-esperanto:
 \addlanguage{esperanto}{loadhyph-eo.tex}{}{2}{2}
 EOF
 mkdir -p %{buildroot}%{_texmf_language_lua_d}
