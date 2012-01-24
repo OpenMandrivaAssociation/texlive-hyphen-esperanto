@@ -5,8 +5,8 @@
 # catalog-license undef
 # catalog-version undef
 Name:		texlive-hyphen-esperanto
-Version:	20111103
-Release:	2
+Version:	20120124
+Release:	1
 Summary:	Esperanto hyphenation patterns
 Group:		Publishing
 URL:		http://tug.org/texlive
@@ -48,14 +48,16 @@ highly recommended.
 %install
 mkdir -p %{buildroot}%{_texmf_language_dat_d}
 cat > %{buildroot}%{_texmf_language_dat_d}/hyphen-esperanto <<EOF
-\%\% from hyphen-esperanto:
+\%% from hyphen-esperanto:
 esperanto loadhyph-eo.tex
 EOF
+perl -pi -e 's|\\%%|%%|;' %{buildroot}%{_texmf_language_dat_d}/hyphen-esperanto
 mkdir -p %{buildroot}%{_texmf_language_def_d}
 cat > %{buildroot}%{_texmf_language_def_d}/hyphen-esperanto <<EOF
-\%\% from hyphen-esperanto:
+\%% from hyphen-esperanto:
 \addlanguage{esperanto}{loadhyph-eo.tex}{}{2}{2}
 EOF
+perl -pi -e 's|\\%%|%%|;' %{buildroot}%{_texmf_language_def_d}/hyphen-esperanto
 mkdir -p %{buildroot}%{_texmf_language_lua_d}
 cat > %{buildroot}%{_texmf_language_lua_d}/hyphen-esperanto <<EOF
 -- from hyphen-esperanto:
