@@ -6,7 +6,7 @@
 # catalog-version undef
 Name:		texlive-hyphen-esperanto
 Version:	20120124
-Release:	6
+Release:	7
 Summary:	Esperanto hyphenation patterns
 Group:		Publishing
 URL:		http://tug.org/texlive
