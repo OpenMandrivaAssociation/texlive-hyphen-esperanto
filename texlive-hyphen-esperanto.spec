@@ -13,7 +13,8 @@ BuildArch:	noarch
 BuildSystem:	texlive
 Requires:	texlive(hyph-utf8)
 Requires:	texlive(hyphen-base)
-Provides:	texlive(%{tl_name}) = %{tl_revision}
+Requires:	texlive-tlpkg
+Provides:	texlive(%{tl_name}) = %{version}
 
 %description
 Hyphenation patterns for Esperanto ISO Latin 3 and UTF-8 encodings. Note
@@ -21,3 +22,26 @@ that TeX distributions don't ship any suitable fonts in Latin 3
 encoding, so unless you create your own font support or want to use
 MlTeX, using native Unicode engines is highly recommended.
 
+
+%install -a
+mkdir -p %{buildroot}%{_texmf_language_dat_d}
+cat > %{buildroot}%{_texmf_language_dat_d}/%{tl_name} <<'TL_HYPHEN_EOF'
+% from hyphen-esperanto:
+esperanto loadhyph-eo.tex
+TL_HYPHEN_EOF
+mkdir -p %{buildroot}%{_texmf_language_def_d}
+cat > %{buildroot}%{_texmf_language_def_d}/%{tl_name} <<'TL_HYPHEN_EOF'
+% from hyphen-esperanto:
+\addlanguage{esperanto}{loadhyph-eo.tex}{}{2}{2}
+TL_HYPHEN_EOF
+mkdir -p %{buildroot}%{_texmf_language_lua_d}
+cat > %{buildroot}%{_texmf_language_lua_d}/%{tl_name} <<'TL_HYPHEN_EOF'
+-- from hyphen-esperanto:
+['esperanto'] = {
+	loader = 'loadhyph-eo.tex',
+	lefthyphenmin = 2,
+	righthyphenmin = 2,
+	synonyms = {  },
+	patterns = 'hyph-eo.pat.txt',
+},
+TL_HYPHEN_EOF
